@@ -1,0 +1,90 @@
+// control.cpp in control_pos instead of the switch case
+	if (type == 1 && array1.size() == holes_pos.size()) {
+		for (int row = 0; row < holes_pos.size(); row++) {
+			auto iter = find_if(array1.begin(), array1.end(), [=](double element) {
+				return isApproximatelyEqual(element, holes_pos[row].x, distance_tolerance);
+				});
+			if (iter != array1.end()) { // Check if a match was found
+				int index = distance(array1.begin(), iter);
+				if (holes_pos[row].y == index) {
+					// Match found at position 'index'
+					return true;
+				}
+			}
+		}
+	}
+	else if (type == 2 && array2.size() == holes_pos.size()) {
+		for (int row = 0; row < holes_pos.size(); row++) {
+			auto iter = find_if(array1.begin(), array2.end(), [=](double element) {
+				return isApproximatelyEqual(element, holes_pos[row].x, distance_tolerance);
+				});
+			if (iter != array2.end()) { // Check if a match was found
+				int index = distance(array2.begin(), iter);
+				if (holes_pos[row].y == index) {
+					// Match found at position 'index'
+					return true;
+				}
+			}
+		}
+	}
+	elseif (type == 3 && array3.size() == holes_pos.size()) {
+		for (int row = 0; row < holes_pos.size(); row++) {
+			auto iter = find_if(array3.begin(), array3.end(), [=](double element) {
+				return isApproximatelyEqual(element, holes_pos[row].x, distance_tolerance);
+				});
+			if (iter != array3.end()) { // Check if a match was found
+				int index = distance(array3.begin(), iter);
+				if (holes_pos[row].y == index) {
+					// Match found at position 'index'
+					return true;
+				}
+			}
+		}
+	}
+
+
+
+
+// control.cpp in control_diameter instead of switch case
+	if (type == 1) {
+		for (int row = 0; row < diameters.size(); row++) {
+			auto iter = find_if(array1.begin(), array1.end(), [=](double element){
+				return isApproximatelyEqual(element, diameters[row], distance_tolerance);
+			});
+			if (iter == array1.end()) {
+				return true;
+			}
+		}
+	}
+	else if (type == 2) {
+		for (int row = 0; row < diameters.size(); row++) {
+			auto iter = find_if(array2.begin(), array2.end(), [=](double element) {
+				return isApproximatelyEqual(element, diameters[row], distance_tolerance);
+				});
+			if (iter == array2.end()) {
+				return true;
+			}
+		}
+	}
+	else if (type == 3) {
+		for (int row = 0; row < diameters.size(); row++) {
+			auto iter = find_if(array3.begin(), array3.end(), [=](double element) {
+				return isApproximatelyEqual(element, diameters[row], distance_tolerance);
+				});
+			if (iter == array3.end()) {
+				return true;
+			}
+		}
+	}
+	
+// calculate.cpp in get_type instead of single first vector index control
+		for (int i = 0; i < bound_box.size(); i++) {
+			bound_box[i] = minAreaRect(contours[i]);
+			bound_box[i].points(rectPoints);
+			size = bound_box[i].size;
+			gasket_center = bound_box[i].center;
+			cout << size.height << endl;
+			if (length > size.height) {
+				length = size.height;
+			}
+		}
